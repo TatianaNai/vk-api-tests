@@ -31,7 +31,8 @@ public class CreateChatPositiveTest {
     @Test(
             description = "Create chat positive test",
             dataProvider = "titleProvider",
-            groups = {"positive", "smoke"})
+            groups = {"positive", "smoke"}
+    )
     public void shouldHaveCorrectCreateChat(GroupActor group, String title) throws ClientException, ApiException {
         log.info("Check if chat id is not null");
         assertNotNull(API_SERVICE.createChatResponse(group, title).getChatId());

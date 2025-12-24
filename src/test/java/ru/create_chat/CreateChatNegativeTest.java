@@ -23,7 +23,8 @@ public class CreateChatNegativeTest {
     @Test(
             description = "Create chat without title negative test",
             expectedExceptions = ApiExtendedException.class,
-            groups = {"negative"})
+            groups = {"negative"}
+    )
     public void shouldHaveExceptionByCreatingChatWithoutTitle() throws ClientException, ApiException {
         API_SERVICE.createChatWithoutTitleResponse(GROUP);
     }
@@ -31,23 +32,24 @@ public class CreateChatNegativeTest {
     @Test(
             description = "Create chat with empty title negative test",
             expectedExceptions = ApiExtendedException.class,
-            groups = {"negative"})
+            groups = {"negative"}
+    )
     public void shouldHaveExceptionByCreatingChatWithEmptyTitle() throws ClientException, ApiException {
         API_SERVICE.createChatResponse(GROUP, "");
     }
 
     @Test(
             description = "Create chat with invalid access token negative test",
-            groups = {"negative", "smoke"})
+            groups = {"negative", "smoke"}
+    )
     public void shouldHaveExceptionByCreatingChatWithInvalidAccessToken() throws ClientException {
         GroupActor groupWithRandomToken = new GroupActor(Long.parseLong(Props.getProperty("groupId1")),
                 randomStringWithLength(220));
         String title = randomStringWithLength(randomIntWithBorders(1, 200));
-        try{
+        try {
             API_SERVICE.createChatResponse(groupWithRandomToken, title);
             fail("Expected exception ApiException was not thrown");
-        }
-        catch(ApiException e) {
+        } catch (ApiException e) {
             log.info("Check massage of ApiException");
             assertEquals(VkApiErrors.FAILED_AUTHORIZATION, e.getMessage());
         }
