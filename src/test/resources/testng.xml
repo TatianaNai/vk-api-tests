@@ -3,8 +3,8 @@
     <test name="Test">
         <groups>
             <run>
-                <exclude name="smoke"/>
                 <include name="negative"/>
+                <exclude name="checkTitle"/>
             </run>
         </groups>
         <classes>

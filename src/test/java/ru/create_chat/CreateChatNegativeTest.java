@@ -6,7 +6,7 @@ import com.vk.api.sdk.exceptions.ApiExtendedException;
 import com.vk.api.sdk.exceptions.ClientException;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.annotations.Test;
-import ru.create_chat.consts.VkApiErrors;
+import ru.create_chat.constants.VkApiErrors;
 import ru.create_chat.services.CreateChatApiService;
 import ru.create_chat.utils.Props;
 
@@ -23,7 +23,7 @@ public class CreateChatNegativeTest {
     @Test(
             description = "Create chat without title negative test",
             expectedExceptions = ApiExtendedException.class,
-            groups = {"negative"}
+            groups = {"negative", "messages", "checkTitle"}
     )
     public void shouldHaveExceptionByCreatingChatWithoutTitle() throws ClientException, ApiException {
         API_SERVICE.createChatWithoutTitleResponse(GROUP);
@@ -32,7 +32,7 @@ public class CreateChatNegativeTest {
     @Test(
             description = "Create chat with empty title negative test",
             expectedExceptions = ApiExtendedException.class,
-            groups = {"negative"}
+            groups = {"negative", "messages", "checkTitle"}
     )
     public void shouldHaveExceptionByCreatingChatWithEmptyTitle() throws ClientException, ApiException {
         API_SERVICE.createChatResponse(GROUP, "");
@@ -40,7 +40,7 @@ public class CreateChatNegativeTest {
 
     @Test(
             description = "Create chat with invalid access token negative test",
-            groups = {"negative", "smoke"}
+            groups = {"negative", "messages"}
     )
     public void shouldHaveExceptionByCreatingChatWithInvalidAccessToken() throws ClientException {
         GroupActor groupWithRandomToken = new GroupActor(Long.parseLong(Props.getProperty("groupId1")),
