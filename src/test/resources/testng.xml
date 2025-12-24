@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Test suite">
+    <test name="Test">
+        <groups>
+            <run>
+                <exclude name="smoke"/>
+                <include name="negative"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="ru.create_chat.CreateChatPositiveTest"/>
+            <class name="ru.create_chat.CreateChatNegativeTest"/>
+        </classes>
+    </test>
+</suite>
